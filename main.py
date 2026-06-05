@@ -25,6 +25,19 @@ def save_json(filename, data):
         json.dump(data, f, indent=2)
 
 
+def send_message(chat_id, text):
+    url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
+
+    requests.post(
+        url,
+        json={
+            "chat_id": chat_id,
+            "text": text
+        },
+        timeout=30
+    )
+
+
 def update_subscribers():
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/getUpdates"
     response = requests.get(url, timeout=30).json()
@@ -38,6 +51,20 @@ def update_subscribers():
 
         if chat_id and str(chat_id) not in subscribers:
             subscribers.append(str(chat_id))
+
+            welcome_text = """👋 Assalomu alaykum!
+
+Daily Top Insights ga xush kelibsiz.
+
+Har kuni:
+🌍 Global Economy
+🇦🇪 UAE & GCC
+🏙 Dubai Real Estate
+📚 Sales Insight
+
+yuboriladi."""
+
+            send_message(str(chat_id), welcome_text)
 
     save_json(SUBSCRIBERS_FILE, subscribers)
     return subscribers
@@ -59,6 +86,21 @@ Focus on:
 - Dubai real estate
 - investment and passive income
 - sales psychology
+- YouTube podcast insights
+- investor psychology
+
+Also search YouTube podcasts, interviews, and expert talks about:
+- Dubai real estate
+- UAE economy
+- GCC investments
+- global economy
+- investing
+- passive income
+- sales psychology
+
+Extract practical insights only.
+Do not summarize entertainment content.
+Prioritize useful points that can help a Dubai real estate broker speak with investors.
 
 Topics:
 {sources.get("topics", [])}
@@ -71,6 +113,7 @@ Format:
 🇦🇪 UAE / GCC
 🏙 Dubai Real Estate
 💰 Investment Insight
+🎙 Podcast / Expert Insight
 📚 Sales Insight
 🎯 Broker uchun bugungi 3 ta gap
 
@@ -86,19 +129,6 @@ Include source names or links where possible.
     )
 
     return response.text
-
-
-def send_message(chat_id, text):
-    url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
-
-    requests.post(
-        url,
-        json={
-            "chat_id": chat_id,
-            "text": text
-        },
-        timeout=30
-    )
 
 
 def main():
