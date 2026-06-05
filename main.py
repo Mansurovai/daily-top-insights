@@ -11,7 +11,7 @@ TELEGRAM_CHAT_ID = os.environ["TELEGRAM_CHAT_ID"]
 client = genai.Client(api_key=GEMINI_API_KEY)
 
 with open("sources.json", "r", encoding="utf-8") as f:
-sources = json.load(f)
+    sources = json.load(f)
 
 prompt = f"""
 You are an investment intelligence analyst.
