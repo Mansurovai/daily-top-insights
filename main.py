@@ -35,19 +35,15 @@ logger = logging.getLogger(__name__)
 
 WELCOME_TEXT = """Assalomu alaykum!
 
-Daily Top Insights botiga xush kelibsiz.
+Dubai Real Estate Intelligence botiga xush kelibsiz.
 
 Har kuni ertalab 07:00 da sizga:
-- Global economy
-- UAE va GCC
-- Dubai real estate
-- Investment va passive income
-- Sales insight
-- Podcast va expert insight
+- Dubay ko'chmas mulk bozoridagi 5 ta eng muhim yangilik
+- investorlar uchun 3 ta insight
+- broker uchun 3 ta kontent g'oyasi
+- mijozga aytishga arziydigan 1 ta fakt
 
-bo'yicha qisqa, amaliy intelligence brief yuboriladi.
-
-O'zingiz kuzatmoqchi bo'lgan mavzu, sayt yoki odam nomini shu yerga yozing. U faqat sizning profilingizga qo'shiladi."""
+yuboriladi."""
 
 
 HELP_TEXT = """Buyruqlar:
